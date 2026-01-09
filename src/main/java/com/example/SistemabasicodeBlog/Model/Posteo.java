@@ -1,5 +1,6 @@
 package com.example.SistemabasicodeBlog.Model;
 
+
 public class Posteo {
 
     private Long id;
