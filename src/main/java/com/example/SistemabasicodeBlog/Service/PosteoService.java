@@ -11,7 +11,6 @@ public class PosteoService implements IservicePosteo {
 
     private final IposteoRepository posteoRepository;
 
-
     public PosteoService(IposteoRepository posteoRepository) {
         this.posteoRepository = posteoRepository;
     }
@@ -23,11 +22,12 @@ public class PosteoService implements IservicePosteo {
 
     @Override
     public Posteo findById(Long id) {
-        return posteoRepository.findById(id);
+        return posteoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
     }
 
     @Override
-    public void save(Posteo posteo) {
-        posteoRepository.save(posteo);
+    public Posteo save(Posteo posteo) {
+        return posteoRepository.save(posteo);
     }
 }

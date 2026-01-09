@@ -1,19 +1,18 @@
 package com.example.SistemabasicodeBlog.Model;
+import jakarta.persistence.*;
 
-
+@Entity
+@Table(name = "posteos")
 public class Posteo {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String titulo;
     private String autor;
 
     public Posteo() {
-    }
-
-    public Posteo(Long id, String titulo, String autor) {
-        this.id = id;
-        this.titulo = titulo;
-        this.autor = autor;
     }
 
     public Long getId() {
@@ -40,3 +39,4 @@ public class Posteo {
         this.autor = autor;
     }
 }
+

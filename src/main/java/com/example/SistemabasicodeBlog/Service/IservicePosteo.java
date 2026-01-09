@@ -8,5 +8,5 @@ public interface IservicePosteo {
 
     List<Posteo> findAll();
     Posteo findById(Long id);
-    void save(Posteo posteo);
+    Posteo save(Posteo posteo);
 }

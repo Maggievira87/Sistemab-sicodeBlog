@@ -1,12 +1,8 @@
 package com.example.SistemabasicodeBlog.Repository;
 
 import com.example.SistemabasicodeBlog.Model.Posteo;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IposteoRepository {
-
-    List<Posteo> findAll();
-    Posteo findById(Long id);
-    void save(Posteo posteo);
+public interface IposteoRepository extends JpaRepository<Posteo, Long> {
 }
 
