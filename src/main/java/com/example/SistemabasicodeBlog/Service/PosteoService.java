@@ -15,19 +15,37 @@ public class PosteoService implements IservicePosteo {
         this.posteoRepository = posteoRepository;
     }
 
-    @Override
+
+    public Posteo save(Posteo posteo) {
+        return posteoRepository.save(posteo);
+    }
+
+
     public List<Posteo> findAll() {
         return posteoRepository.findAll();
     }
 
-    @Override
+
     public Posteo findById(Long id) {
         return posteoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Posteo no encontrado con id: " + id));
     }
 
-    @Override
-    public Posteo save(Posteo posteo) {
-        return posteoRepository.save(posteo);
+    public Posteo update(Long id, Posteo posteoNuevo) {
+        Posteo posteoExistente = posteoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Posteo no encontrado con id: " + id));
+
+        posteoExistente.setTitulo(posteoNuevo.getTitulo());
+        posteoExistente.setContenido(posteoNuevo.getContenido());
+
+        return posteoRepository.save(posteoExistente);
+    }
+
+
+    public void delete(Long id) {
+        Posteo posteo = posteoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Posteo no encontrado con id: " + id));
+
+        posteoRepository.delete(posteo);
     }
 }

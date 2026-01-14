@@ -9,4 +9,6 @@ public interface IservicePosteo {
     List<Posteo> findAll();
     Posteo findById(Long id);
     Posteo save(Posteo posteo);
+    Posteo update(Long id, Posteo posteo);
+    void delete(Long id);
 }

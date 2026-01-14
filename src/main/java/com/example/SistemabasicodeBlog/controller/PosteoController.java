@@ -10,29 +10,35 @@ import java.util.List;
 @RequestMapping("/posteos")
 public class PosteoController {
 
-    private final IservicePosteo posteoService;
+    private final IservicePosteo service;
 
-
-    public PosteoController(IservicePosteo posteoService) {
-        this.posteoService = posteoService;
+    public PosteoController(IservicePosteo service) {
+        this.service = service;
     }
 
+    @PostMapping
+    public Posteo crear(@RequestBody Posteo posteo) {
+        return service.save(posteo);
+    }
 
     @GetMapping
-    public List<Posteo> getAll() {
-        return posteoService.findAll();
+    public List<Posteo> listar() {
+        return service.findAll();
     }
-
 
     @GetMapping("/{id}")
-    public Posteo getById(@PathVariable Long id) {
-        return posteoService.findById(id);
+    public Posteo obtener(@PathVariable Long id) {
+        return service.findById(id);
     }
 
+    @PutMapping("/{id}")
+    public Posteo actualizar(@PathVariable Long id, @RequestBody Posteo posteo) {
+        return service.update(id, posteo);
+    }
 
-    @PostMapping("/crear")
-    public String crearPosteo(@RequestBody Posteo posteo) {
-        posteoService.save(posteo);
-        return "Posteo creado correctamente";
+    @DeleteMapping("/{id}")
+    public String eliminar(@PathVariable Long id) {
+        service.delete(id);
+        return "Post eliminado";
     }
 }
